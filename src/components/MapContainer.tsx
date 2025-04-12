@@ -10,7 +10,9 @@ export interface MapContainerProps {
   onClick?: (event: L.LeafletMouseEvent) => void;
 }
 
-const MapContext = createContext<L.Map | null>(null);
+const MapContext = createContext<React.MutableRefObject<L.Map | null> | null>(
+  null
+);
 
 export function useMapContext() {
   return useContext(MapContext);
@@ -27,7 +29,7 @@ function MapContainer({
   const leafletMap = useMap(mapRef, { center, zoom, maxZoom, onClick });
 
   return (
-    <MapContext.Provider value={leafletMap.current}>
+    <MapContext.Provider value={leafletMap}>
       <div ref={mapRef} className="h-full w-full">
         {children}
       </div>
