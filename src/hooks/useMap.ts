@@ -8,7 +8,7 @@ const ATTRIBUTION =
 
 export function useMap(
   mapRef: React.RefObject<HTMLDivElement>,
-  { center, zoom, maxZoom = 19, onClick }: MapContainerProps
+  { center, zoom, maxZoom, onClick }: Omit<MapContainerProps, "children">
 ) {
   const leafletMap = useRef<L.Map | null>(null);
 
