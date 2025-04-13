@@ -27,3 +27,30 @@ https://v2.tauri.app/distribute/app-store/
 3. `npx tauri android build`
 
 4. Voila! it will depend on your computer but approx time is 7min
+
+`cargo install tauri-cli`
+
+it will run as usual on the emulator
+
+`cargo tauri android dev`
+
+if you want to test it even locally on your phone you will need to sign it first:
+
+1. build
+
+2. create the key
+
+`keytool -genkey -v -keystore ./src-tauri/gen/android/release-keystore.jks -alias alias_name -keyalg RSA -keysize 2048 -validity 10000`
+
+3. link the key to the apk
+
+$ANDROID_HOME/build-tools/34.0.0/apksigner sign --ks ./src-tauri/gen/android/release-keystore.jks ./src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+
+4. you can install it on your device now `😊`
+
+## TIPS
+
+remove any lock that doesn't match your package manager
+bun.lock
+yarn.lock
+package-lock.json
